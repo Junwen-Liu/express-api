@@ -7,13 +7,13 @@ module.exports = (req, res, next) =>{
     //authorization = 'Bearer laskj....'
 
     if(!authorization){
-        return res.status(401).send({error: 'you must be logged in'});
+        return res.status(401).send({error: '需要您先登录系统'});
     }
 
     const token = authorization.replace('Bearer ', '');
     jwt.verify(token, 'My_secret_key', async(err, payload)=>{
         if(err){
-            return res.status(401).send({error: 'you must be logged in'});
+            return res.status(401).send({error: '您需要登录软件'});
         }
 
         const {userId} = payload;

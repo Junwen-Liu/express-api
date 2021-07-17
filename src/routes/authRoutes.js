@@ -23,12 +23,12 @@ router.post('/signin', async (req, res)=>{
     const {email, password} = req.body;
 
     if(!email || !password){
-        return res.status(422).send({error: 'Must provide email and password'});
+        return res.status(422).send({error: '需要提供邮箱和密码'});
     }
 
     const user = await User.findOne({email});
     if(!user){
-        return res.status(422).send({error: 'Invalid password and email'});
+        return res.status(422).send({error: '无效邮箱或密码'});
     }
 
     try{
@@ -36,9 +36,9 @@ router.post('/signin', async (req, res)=>{
         const token = jwt.sign({userId: user._id}, 'My_secret_key');
         res.send({token});
     }catch(err){
-        return res.status(422).send({error: 'Invalid password and email'});
+        return res.status(422).send({error: '无效邮箱或密码'});
     }
     
-})
+});
 
 module.exports = router;

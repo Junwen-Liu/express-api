@@ -19,7 +19,7 @@ router.post('/tracks', async(req, res) =>{
     const {name, locations} = req.body;
 
     if(!name || !locations){
-        res.status(422).send({error: 'You must provide a name and locations'});
+        res.status(422).send({error: '需要提供路线名称和位置信息'});
     }
 
     try{
